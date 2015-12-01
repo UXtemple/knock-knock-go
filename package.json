@@ -1,0 +1,44 @@
+{
+  "name": "knock-knock-go",
+  "description": "knock-knock-go is React a helper to simplify the process of loading asynchronous components by dealing with the logic around when to render the component, an error or a loading message",
+  "main": "index.js",
+  "scripts": {
+    "build": ".bin/build",
+    "clean": ".bin/clean",
+    "compile": ".bin/compile",
+    "push": ".bin/push",
+    "test": ".bin/test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UXtemple/knock-knock-go.git"
+  },
+  "keywords": [
+    "knock",
+    "go",
+    "react",
+    "redux",
+    "asynchronous",
+    "async",
+    "loading",
+    "error",
+    "fail",
+    "done",
+    "base",
+    "component",
+    "simple"
+  ],
+  "author": "UXtemple <hi@uxtemple.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/UXtemple/knock-knock-go/issues"
+  },
+  "homepage": "https://github.com/UXtemple/knock-knock-go#readme",
+  "peerDependencies": {
+    "react": "^0.14.0",
+    "recompose": "^0.11.0"
+  },
+  "devDependencies": {
+    "babel": "^5.8.34"
+  }
+}

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+./node_modules/.bin/babel \
+  $1 \
+  --ignore node_modules/**,**/__tests__/** \
+  --extensions .es6 \
+  --out-dir . .
