@@ -48,8 +48,10 @@ const KnockKnockGoMyOtherComponent = myKnockKnockGo(
   props => props.error,
   // all going well, render this thing
   MyOtherComponent,
-  // ...and, before load run this thing because I really need whatever it has to work
-  component => component.props.dispatch(fetchIfNeeded())
+  // ...and, before load run this thing because I really need whatever it has to work.
+  // This is internally using `recompose/doOnReceiveProps` which runs on `componentWillMount`
+  // and `componentWillReceiveProps`.
+  props => props.dispatch(fetchIfNeeded())
 );
 
 function mapStateToProps(state, props) {

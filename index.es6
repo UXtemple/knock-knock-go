@@ -1,6 +1,6 @@
 import compose from 'recompose/compose';
 import errorKnocker from './error-knocker';
-import lifecycle from 'recompose/lifecycle';
+import doOnReceiveProps from 'recompose/doOnReceiveProps';
 import loadKnocker from './load-knocker';
 import React from 'react';
 
@@ -8,10 +8,7 @@ export default function createKnockKnockGo(LoadingComponent, ErrorComponent, Wra
   return function knockKnockGo(isLoading, hasErrors, BaseComponent, beforeLoad) {
     let beforeKnocker;
     if (typeof beforeLoad === 'function') {
-      beforeKnocker = lifecycle(
-        beforeLoad,
-        _ => _
-      );
+      beforeKnocker = doOnReceiveProps(beforeLoad);
     }
 
     const knocker = loadKnocker(
