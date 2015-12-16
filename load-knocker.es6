@@ -1,4 +1,5 @@
 import branch from 'recompose/branch';
+import React from 'react';
 
 export const DefaultLoading = () => <div>loading...</div>;
 
