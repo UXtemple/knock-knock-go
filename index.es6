@@ -1,35 +1,30 @@
 import compose from 'recompose/compose';
-import errorKnocker from './error-knocker';
 import doOnReceiveProps from 'recompose/doOnReceiveProps';
-import loadKnocker from './load-knocker';
 import React from 'react';
+import setDisplayName from 'recompose/setDisplayName';
 
-export default function createKnockKnockGo(LoadingComponent, ErrorComponent, WrapperComponent='div') {
+const DefaultError = () => <div>error...</div>;
+const DefaultLoading = () => <div>loading...</div>;
+
+export default function createKnockKnockGo(LoadingComponent=DefaultLoading, ErrorComponent=DefaultError) {
   return function knockKnockGo(isLoading, hasErrors, BaseComponent, beforeLoad) {
-    let beforeKnocker;
+    let beforeKnock;
     if (typeof beforeLoad === 'function') {
-      beforeKnocker = doOnReceiveProps(beforeLoad);
+      beforeKnock = doOnReceiveProps(beforeLoad);
     }
 
-    const knocker = loadKnocker(
-      isLoading,
+    const KnockKnockGo = props => {
+      if (isLoading(props)) {
+        return <LoadingComponent {...props} />;
+      } else if (hasErrors(props)) {
+        return <ErrorComponent {...props} />;
+      } else {
+        return <BaseComponent {...props} />;
+      }
+    };
 
-      errorKnocker(
-        hasErrors,
-        BaseComponent,
-        ErrorComponent
-      ),
-
-      LoadingComponent
-    );
-
-    const composedComponent = typeof beforeKnocker === 'undefined' ?
-      compose(knocker) :
-      compose(
-        beforeKnocker,
-        knocker
-      );
-
-    return composedComponent(WrapperComponent);
+    return typeof beforeKnock === 'undefined' ?
+      KnockKnockGo :
+      setDisplayName('KnockKnockGo')(beforeKnock(KnockKnockGo));
   };
 }
